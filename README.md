@@ -1,5 +1,6 @@
 # never kill your time
 A simple script that creates push notification on Ubuntu to remind your routine.
+![Screenshot](./screenshot.jpg)
 
 ## How to install
 - Clone the repository 
