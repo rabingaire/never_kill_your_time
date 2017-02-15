@@ -26,16 +26,22 @@ def main():
   
   while True:
     time.sleep(300)
+      # edit these message to add your routine
+      # add elif if you want to add more hours
     if now.hour == 20:
+      # this message is shown at 20:00
       showNotification("Learn!!!","Learn Python", image)
     elif now.hour == 21:
+      # this message is shown at 21:00
       showNotification("Learn!!!","Machine Learning", image)
     elif now.hour == 22:
+      # this message is shown at 22:00
       showNotification("Read!!!","Read any Book", image)
     elif now.hour == 23:
+      # this message is shown at 23:00
       showNotification("Sleep!!!","Please Sleep", image)
     else: 
-      print "hey"
+      continue
 
     time.sleep(3300)
 
