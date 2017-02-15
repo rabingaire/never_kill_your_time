@@ -12,7 +12,7 @@ A simple script that creates push notification on Ubuntu to remind your routine.
 
 - Don't forget to add never_kill_your_time on startup application of ubuntu the location of installation is `/bin/never_kill_your_time`
 - How to add my Routine? Open never_kill_your_time using your own text editor and inside main method there are instruction on a comment follow those.
-- I know editing the code is a buzkill. I will fix that as soon as I can. Thank You.
+- I know editing the code is a buzzkill. I will fix that as soon as I can. Thank You.
 
 ## Yahoo I am Happy
 - Thank you for using never kill your time
