@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+'''
+Author: Rabin Gaire
+for more info visit www.rabingaire.me
+follow me at twitter @rabingaire
+Happy Coding!!!
+'''
+
+import datetime
+import time
+from gi.repository import Notify, GdkPixbuf
+
+def showNotification(title, body, image):
+  notification = Notify.Notification.new(
+    title,
+    body
+  )
+  notification.set_icon_from_pixbuf(image)
+  notification.set_image_from_pixbuf(image)
+  notification.show()
+
+def main():
+  now = datetime.datetime.now()
+  Notify.init("never kill your time")
+  image = GdkPixbuf.Pixbuf.new_from_file("./notification.png")
+  
+  while True:
+    time.sleep(300)
+    if now.hour == 20:
+      showNotification("Learn!!!","Learn Python", image)
+    elif now.hour == 21:
+      showNotification("Learn!!!","Machine Learning", image)
+    elif now.hour == 22:
+      showNotification("Read!!!","Read any Book", image)
+    elif now.hour == 23:
+      showNotification("Sleep!!!","Please Sleep", image)
+    else: 
+      print "hey"
+
+    time.sleep(3300)
+
+if __name__ == '__main__':
+  main()
