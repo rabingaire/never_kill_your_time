@@ -1,2 +1,4 @@
-# never_kill_your_time
-This is a simple app that sends push notification on Ubuntu reminding of your routine.
+# never kill your time
+A simple script that creates push notification on Ubuntu to remind your routine.
+
+
