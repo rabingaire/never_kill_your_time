@@ -6,9 +6,13 @@ follow me at twitter @rabingaire
 Happy Coding!!!
 '''
 
+import os
 import datetime
 import time
 from gi.repository import Notify, GdkPixbuf
+
+def playbeep:
+  os.system('paplay /usr/share/sounds/ubuntu/notifications/Xylo.ogg')
 
 def showNotification(title, body, image):
   notification = Notify.Notification.new(
@@ -18,12 +22,13 @@ def showNotification(title, body, image):
   notification.set_icon_from_pixbuf(image)
   notification.set_image_from_pixbuf(image)
   notification.show()
+  playbeep()
 
 def main():
   now = datetime.datetime.now()
   Notify.init("never kill your time")
   image = GdkPixbuf.Pixbuf.new_from_file("./notification.png")
-  
+
   while True:
     time.sleep(300)
       # edit these message to add your routine
@@ -40,7 +45,7 @@ def main():
     elif now.hour == 23:
       # this message is shown at 23:00
       showNotification("Sleep!!!","Please Sleep", image)
-    else: 
+    else:
       continue
 
     time.sleep(3300)
