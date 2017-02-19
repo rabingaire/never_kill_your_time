@@ -11,7 +11,7 @@ import datetime
 import time
 from gi.repository import Notify, GdkPixbuf
 
-def playbeep:
+def playbeep():
   os.system('paplay /usr/share/sounds/ubuntu/notifications/Xylo.ogg')
 
 def showNotification(title, body, image):
