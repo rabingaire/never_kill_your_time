@@ -1,0 +1,22 @@
+[
+  {
+    "time":"15:00",
+    "title":"Learn!",
+    "body":"learn python"
+  },
+  {
+    "time":"21:00",
+    "title":"Learn!",
+    "body":"learn machine learning"
+  },
+  {
+    "time":"22:00",
+    "title":"Read!",
+    "body":"Read any book"
+  },
+  {
+    "time":"23:30",
+    "title":"Sleep!",
+    "body":"Please sleep"
+  }
+]
