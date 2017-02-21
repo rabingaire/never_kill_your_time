@@ -10,7 +10,11 @@ import os
 import datetime
 import time
 import json
-from gi.repository import Notify, GdkPixbuf
+import gi
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify
+gi.require_version('GdkPixbuf', '2.0')
+from gi.repository import GdkPixbuf
 
 def playbeep():
   os.system('paplay /usr/share/sounds/ubuntu/notifications/Xylo.ogg')
@@ -39,12 +43,12 @@ def main():
   image = GdkPixbuf.Pixbuf.new_from_file("./notification.png")
 
   while True:
-    time.sleep(300)
+    #time.sleep(300)
     for routine in data:
         if routine["time"]==timenow():
             showNotification(routine["title"],routine["body"], image)
 
-    time.sleep(3300)
+    time.sleep(60)
 
 if __name__ == '__main__':
   main()
