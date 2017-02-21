@@ -9,10 +9,16 @@ Happy Coding!!!
 import os
 import datetime
 import time
+import json
 from gi.repository import Notify, GdkPixbuf
 
 def playbeep():
   os.system('paplay /usr/share/sounds/ubuntu/notifications/Xylo.ogg')
+
+def timenow():
+    now = datetime.datetime.now()
+    time = ("%s:%s" % (now.hour, now.minute))
+    return time
 
 def showNotification(title, body, image):
   notification = Notify.Notification.new(
@@ -24,6 +30,9 @@ def showNotification(title, body, image):
   notification.show()
   playbeep()
 
+json_data=open("routine.json").read()
+data = json.loads(json_data)
+
 def main():
   now = datetime.datetime.now()
   Notify.init("never kill your time")
@@ -31,22 +40,9 @@ def main():
 
   while True:
     time.sleep(300)
-      # edit these message to add your routine
-      # add elif if you want to add more hours
-    if now.hour == 20:
-      # this message is shown at 20:00
-      showNotification("Learn!!!","Learn Python", image)
-    elif now.hour == 21:
-      # this message is shown at 21:00
-      showNotification("Learn!!!","Machine Learning", image)
-    elif now.hour == 22:
-      # this message is shown at 22:00
-      showNotification("Read!!!","Read any Book", image)
-    elif now.hour == 23:
-      # this message is shown at 23:00
-      showNotification("Sleep!!!","Please Sleep", image)
-    else:
-      continue
+    for routine in data:
+        if routine["time"]==timenow():
+            showNotification(routine["title"],routine["body"], image)
 
     time.sleep(3300)
 
