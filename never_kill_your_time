@@ -5,7 +5,7 @@ for more info visit www.rabingaire.me
 follow me at twitter @rabingaire
 Happy Coding!!!
 '''
-
+import sys
 import os
 import datetime
 import time
@@ -50,5 +50,40 @@ def main():
 
     time.sleep(60)
 
-if __name__ == '__main__':
-  main()
+def add(x,y,z):
+    dict = {
+    "time":x,
+    "title":y,
+    "body":z
+    }
+    data.append(dict)
+    with open('/bin/routine.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+def update(x,y,z):
+    for routine in data:
+        if routine["time"]==x:
+            routine["title"]=y
+            routine["body"]=z
+    with open('/bin/routine.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+def delete(x):
+    i=0
+    for routine_i in data:
+        if routine_i["time"]==x:
+            data.pop(i)
+        i=i+1
+    with open('/bin/routine.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+if len(sys.argv) > 1:
+    if __name__ == '__main__' and sys.argv[1]=='add':
+        add(sys.argv[2],sys.argv[3],sys.argv[4])
+    elif __name__ == '__main__' and sys.argv[1]=='update':
+        update(sys.argv[2],sys.argv[3],sys.argv[4])
+    elif __name__ == '__main__' and sys.argv[1]=='delete':
+        delete(sys.argv[2])
+elif __name__ == '__main__':
+    main()
+
