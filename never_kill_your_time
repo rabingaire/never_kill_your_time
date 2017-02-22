@@ -34,13 +34,13 @@ def showNotification(title, body, image):
   notification.show()
   playbeep()
 
-json_data=open("routine.json").read()
+json_data=open("/bin/routine.json").read()
 data = json.loads(json_data)
 
 def main():
   now = datetime.datetime.now()
   Notify.init("never kill your time")
-  image = GdkPixbuf.Pixbuf.new_from_file("./notification.png")
+  image = GdkPixbuf.Pixbuf.new_from_file("/bin/notification.png")
 
   while True:
     #time.sleep(300)
