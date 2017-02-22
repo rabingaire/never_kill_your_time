@@ -4,6 +4,18 @@ A simple script that creates push notification on Ubuntu to remind your routine.
 
 ## How to install
 - Clone the repository 
+- Add your Routine on the file name routine.json inside never_kill_your_time folder. Example of the routine is given below:
+  
+  ```json
+  [
+    {
+      "time":"15:00",
+      "title":"Learn!",
+      "body":"learn python"
+    }
+  ]
+  ```
+
 - Run the script given below inside never_kill_your_time folder
   
   ```bash
@@ -18,18 +30,6 @@ A simple script that creates push notification on Ubuntu to remind your routine.
   ```
   
 - Don't forget to add never_kill_your_time on startup application of ubuntu the location of installation is `/bin/never_kill_your_time`
-- How to add my Routine? Add your Routine on the file name routine.json. For example:
-  
-  ```json
-  [
-    {
-      "time":"15:00",
-      "title":"Learn!",
-      "body":"learn python"
-    }
-  ]
-  ```
-
 - Time format in json file is "hh:mm", where the acceptable range of "hh" is 0-23, and of "mm" is 0-59. (Thank You [tarunvelli](https://github.com/tarunvelli))
 - I know editing the json file is a buzzkill. I will fix that as soon as I can. Thank You.
 - Or you could contribute. If you can please help me :) 
