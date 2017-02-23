@@ -34,8 +34,9 @@ def showNotification(title, body, image):
   notification.show()
   playbeep()
 
-json_data=open("/bin/routine.json").read()
-data = json.loads(json_data)
+data = None
+with open("/bin/routine.json") as f:
+  data = json.loads(f.read())
 
 def main():
   now = datetime.datetime.now()
@@ -86,4 +87,3 @@ if len(sys.argv) > 1:
         delete(sys.argv[2])
 elif __name__ == '__main__':
     main()
-
