@@ -21,7 +21,13 @@ def playbeep():
 
 def timenow():
     now = datetime.datetime.now()
-    time = ("%s:%s" % (now.hour, now.minute))
+    hour=now.hour
+    minute=now.minute
+    if int(hour)<10:
+        hour="0"+str(hour)
+    if int(minute)<10:
+        minute="0"+str(minute)
+    time = ("%s:%s" % (hour, minute))
     return time
 
 def showNotification(title, body, image):
@@ -43,7 +49,6 @@ def main():
   image = GdkPixbuf.Pixbuf.new_from_file("/bin/notification.png")
 
   while True:
-    #time.sleep(300)
     for routine in data:
         if routine["time"]==timenow():
             showNotification(routine["title"],routine["body"], image)
@@ -86,4 +91,3 @@ if len(sys.argv) > 1:
         delete(sys.argv[2])
 elif __name__ == '__main__':
     main()
-
