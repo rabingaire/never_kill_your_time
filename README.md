@@ -1,6 +1,6 @@
 # never kill your time
 A simple script that creates push notification on Ubuntu to remind your routine.
-![Screenshot](./screenshot.jpg)
+![Screenshot](./data/screenshot.jpg)
 
 ## How to install
 - Clone the repository
@@ -62,7 +62,7 @@ example if the json already contains
 >>}
 
 ```bash
-~ $ sudo never_kill_your_time update "20:45" "study" "study hard"
+~ $ sudo never_kill_your_time update "10:45" "study" "study hard"
 ```
 will modify it to  
 >>{

@@ -1,6 +1,8 @@
 cp never_kill_your_time /bin/never_kill_your_time
-cp routine.json /bin/routine.json
-cp notification.png /bin/notification.png
+mkdir /opt/never_kill_your_time
+cp ./json/routine.json /opt/never_kill_your_time/routine.json
+cp ./data/notification.png /opt/never_kill_your_time/notification.png
+cp ./data/Xylo.ogg /opt/never_kill_your_time/Xylo.ogg
 chmod a+x /bin/never_kill_your_time
 echo "Thank you for installing."
 echo "Please add this program to startup application to get the full out of it."
