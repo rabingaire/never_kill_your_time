@@ -17,11 +17,17 @@ gi.require_version('GdkPixbuf', '2.0')
 from gi.repository import GdkPixbuf
 
 def playbeep():
-  os.system('paplay /usr/share/sounds/ubuntu/notifications/Xylo.ogg')
+  os.system('paplay /opt/never_kill_your_time/Xylo.ogg')
 
 def timenow():
     now = datetime.datetime.now()
-    time = ("%s:%s" % (now.hour, now.minute))
+    hour=now.hour
+    minute=now.minute
+    if int(hour)<10:
+        hour="0"+str(hour)
+    if int(minute)<10:
+        minute="0"+str(minute)
+    time = ("%s:%s" % (hour, minute))
     return time
 
 def showNotification(title, body, image):
@@ -35,16 +41,15 @@ def showNotification(title, body, image):
   playbeep()
 
 data = None
-with open("/bin/routine.json") as f:
+with open("/opt/never_kill_your_time/routine.json") as f:
   data = json.loads(f.read())
 
 def main():
   now = datetime.datetime.now()
   Notify.init("never kill your time")
-  image = GdkPixbuf.Pixbuf.new_from_file("/bin/notification.png")
+  image = GdkPixbuf.Pixbuf.new_from_file("/opt/never_kill_your_time/notification.png")
 
   while True:
-    #time.sleep(300)
     for routine in data:
         if routine["time"]==timenow():
             showNotification(routine["title"],routine["body"], image)
@@ -58,7 +63,7 @@ def add(x,y,z):
     "body":z
     }
     data.append(dict)
-    with open('/bin/routine.json', 'w') as outfile:
+    with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
 def update(x,y,z):
@@ -66,7 +71,7 @@ def update(x,y,z):
         if routine["time"]==x:
             routine["title"]=y
             routine["body"]=z
-    with open('/bin/routine.json', 'w') as outfile:
+    with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
 def delete(x):
@@ -75,7 +80,7 @@ def delete(x):
         if routine_i["time"]==x:
             data.pop(i)
         i=i+1
-    with open('/bin/routine.json', 'w') as outfile:
+    with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
 if len(sys.argv) > 1:
