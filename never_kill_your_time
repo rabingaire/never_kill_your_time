@@ -16,79 +16,82 @@ from gi.repository import Notify
 gi.require_version('GdkPixbuf', '2.0')
 from gi.repository import GdkPixbuf
 
+
 def playbeep():
-  os.system('paplay /opt/never_kill_your_time/Xylo.ogg')
+    os.system('paplay /opt/never_kill_your_time/Xylo.ogg')
+
 
 def timenow():
     now = datetime.datetime.now()
-    hour=now.hour
-    minute=now.minute
-    if int(hour)<10:
-        hour="0"+str(hour)
-    if int(minute)<10:
-        minute="0"+str(minute)
-    time = ("%s:%s" % (hour, minute))
+    time = now.strftime("%H:%M")
     return time
 
+
 def showNotification(title, body, image):
-  notification = Notify.Notification.new(
-    title,
-    body
-  )
-  notification.set_icon_from_pixbuf(image)
-  notification.set_image_from_pixbuf(image)
-  notification.show()
-  playbeep()
+    notification = Notify.Notification.new(
+        title,
+        body
+    )
+    notification.set_icon_from_pixbuf(image)
+    notification.set_image_from_pixbuf(image)
+    notification.show()
+    playbeep()
 
 data = None
 with open("/opt/never_kill_your_time/routine.json") as f:
-  data = json.loads(f.read())
+    data = json.loads(f.read())
+
 
 def main():
-  now = datetime.datetime.now()
-  Notify.init("never kill your time")
-  image = GdkPixbuf.Pixbuf.new_from_file("/opt/never_kill_your_time/notification.png")
+    now = datetime.datetime.now()
+    Notify.init("never kill your time")
+    image = GdkPixbuf.Pixbuf.new_from_file(
+        "/opt/never_kill_your_time/notification.png")
 
-  while True:
-    for routine in data:
-        if routine["time"]==timenow():
-            showNotification(routine["title"],routine["body"], image)
+    while True:
+        for routine in data:
+            if routine["time"] == timenow():
+                showNotification(routine["title"], routine["body"], image)
 
-    time.sleep(60)
+        time.sleep(60)
 
-def add(x,y,z):
-    dict = {
-    "time":x,
-    "title":y,
-    "body":z
+
+def add(x, y, z):
+    info = {
+        "time": x,
+        "title": y,
+        "body": z
     }
-    data.append(dict)
+    data.append(info)
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
-def update(x,y,z):
+
+def update(x, y, z):
     for routine in data:
-        if routine["time"]==x:
-            routine["title"]=y
-            routine["body"]=z
+        if routine["time"] == x:
+            routine["title"] = y
+            routine["body"] = z
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
+
 
 def delete(x):
-    i=0
+    i = 0
     for routine_i in data:
-        if routine_i["time"]==x:
+        if routine_i["time"] == x:
             data.pop(i)
-        i=i+1
+        i = i + 1
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
-if len(sys.argv) > 1:
-    if __name__ == '__main__' and sys.argv[1]=='add':
-        add(sys.argv[2],sys.argv[3],sys.argv[4])
-    elif __name__ == '__main__' and sys.argv[1]=='update':
-        update(sys.argv[2],sys.argv[3],sys.argv[4])
-    elif __name__ == '__main__' and sys.argv[1]=='delete':
-        delete(sys.argv[2])
-elif __name__ == '__main__':
-    main()
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'add':
+            add(sys.argv[2], sys.argv[3], sys.argv[4])
+        elif sys.argv[1] == 'update':
+            update(sys.argv[2], sys.argv[3], sys.argv[4])
+        elif sys.argv[1] == 'delete':
+            delete(sys.argv[2])
+    else:
+        main()
