@@ -23,7 +23,7 @@ def playbeep():
 
 def timenow():
     now = datetime.datetime.now()
-    time = now.strftime("%H:%M")
+    time = now.strftime('%H:%M')
     return time
 
 
@@ -38,29 +38,29 @@ def showNotification(title, body, image):
     playbeep()
 
 data = None
-with open("/opt/never_kill_your_time/routine.json") as f:
+with open('/opt/never_kill_your_time/routine.json') as f:
     data = json.loads(f.read())
 
 
 def main():
     now = datetime.datetime.now()
-    Notify.init("never kill your time")
+    Notify.init('never kill your time')
     image = GdkPixbuf.Pixbuf.new_from_file(
-        "/opt/never_kill_your_time/notification.png")
+        '/opt/never_kill_your_time/notification.png')
 
     while True:
         for routine in data:
-            if routine["time"] == timenow():
-                showNotification(routine["title"], routine["body"], image)
+            if routine['time'] == timenow():
+                showNotification(routine['title'], routine['body'], image)
 
         time.sleep(60)
 
 
 def add(x, y, z):
     info = {
-        "time": x,
-        "title": y,
-        "body": z
+        'time': x,
+        'title': y,
+        'body': z
     }
     data.append(info)
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
@@ -69,9 +69,9 @@ def add(x, y, z):
 
 def update(x, y, z):
     for routine in data:
-        if routine["time"] == x:
-            routine["title"] = y
-            routine["body"] = z
+        if routine['time'] == x:
+            routine['title'] = y
+            routine['body'] = z
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
@@ -79,7 +79,7 @@ def update(x, y, z):
 def delete(x):
     i = 0
     for routine_i in data:
-        if routine_i["time"] == x:
+        if routine_i['time'] == x:
             data.pop(i)
         i = i + 1
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
