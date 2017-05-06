@@ -94,7 +94,7 @@ to ensure that the right json file is being loaded
 - Time format in json file is "hh:mm", where the acceptable range of "hh" is 0-23, and of "mm" is 0-59. (Thank You [tarunvelli](https://github.com/tarunvelli))
 - Or you could contribute. If you can please help me :)
 
-## Contributers
+## Contributors
 - [tarunvelli](https://github.com/tarunvelli)
 - [amitness](https://github.com/amitness)
 
