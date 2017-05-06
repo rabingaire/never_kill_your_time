@@ -77,11 +77,9 @@ def update(x, y, z):
 
 
 def delete(x):
-    i = 0
     for routine_i in data:
         if routine_i['time'] == x:
-            data.pop(i)
-        i = i + 1
+            data.remove(routine_i)
     with open('/opt/never_kill_your_time/routine.json', 'w') as outfile:
         json.dump(data, outfile)
 
